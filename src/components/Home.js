@@ -6,7 +6,9 @@ import { DELETE_CONTACT } from "../redux/reducers/contactReducer";
 import { toast } from "react-toastify";
 const Home = () => {
 	const dispatch = useDispatch();
+
 	let contacts = useSelector(selectContacts);
+	console.log(contacts);
 
 	const handleDelete = (id) => {
 		dispatch(DELETE_CONTACT(id));
@@ -21,14 +23,13 @@ const Home = () => {
 						Add Contact
 					</Link>
 				</div>
-				{contacts.length > 0 && (
+				{contacts?.length > 0 && (
 					<div className="col-md-10 mx-auto">
 						<table className="table table-hover">
 							<thead className="text-white bg-dark text-center">
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Name</th>
-									<th scope="col">Email</th>
 									<th scope="col">Number</th>
 									<th scope="col">Action</th>
 								</tr>
@@ -37,12 +38,11 @@ const Home = () => {
 								{contacts.map((contact, index) => {
 									const { id, name, email, number } = contact;
 									return (
-										<tr key={index}>
+										<tr key={index} className="text-center">
 											<td>{id}</td>
 											<td>{name}</td>
-											<td>{email}</td>
 											<td>{number}</td>
-											<td>
+											<td className="text-center">
 												<Link
 													to={`/edit/${id}`}
 													className="btn btn-small btn-primary mx-2"

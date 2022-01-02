@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 const EditContact = () => {
 	const { id } = useParams();
 	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
+	// const [email, setEmail] = useState("");
 	const [number, setNumber] = useState("");
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -19,18 +19,12 @@ const EditContact = () => {
 	useEffect(() => {
 		if (currentContact) {
 			setName(currentContact.name);
-			setEmail(currentContact.email);
 			setNumber(currentContact.number);
 		}
 	}, [currentContact]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		const checkEmail = contacts.find(
-			(contact) =>
-				contact.id !== parseInt(id) && contact.email === email && email
-		);
 
 		const checkNumber = contacts.find(
 			(contact) =>
@@ -39,12 +33,8 @@ const EditContact = () => {
 				number
 		);
 
-		if (!email || !name || !number) {
+		if (!name || !number) {
 			return toast.warning("Please fill in all fields!");
-		}
-
-		if (checkEmail) {
-			return toast.error("This email already Exists!");
 		}
 
 		if (checkNumber) {
@@ -54,7 +44,6 @@ const EditContact = () => {
 			id: parseInt(id),
 			name,
 			number,
-			email,
 		};
 		dispatch(EDIT_CONTACT(data));
 		toast.success("Student Updated Succesfully");
@@ -77,15 +66,7 @@ const EditContact = () => {
 										onChange={(e) => setName(e.target.value)}
 									/>
 								</div>
-								<div className="mb-3">
-									<input
-										type="email"
-										className="form-control"
-										placeholder="Email"
-										value={email}
-										onChange={(e) => setEmail(e.target.value)}
-									/>
-								</div>
+
 								<div className="mb-3">
 									<input
 										type="number"

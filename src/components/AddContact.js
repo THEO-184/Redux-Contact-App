@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 const AddContact = () => {
 	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
+	// const [email, setEmail] = useState("");
 	const [number, setNumber] = useState("");
 	const contacts = useSelector(selectContacts);
 	const dispatch = useDispatch();
@@ -16,21 +16,21 @@ const AddContact = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const checkEmail = contacts.find(
-			(contact) => contact.email === email && email
-		);
+		// const checkEmail = contacts.find(
+		// 	(contact) => contact.email === email && email
+		// );
 
 		const checkNumber = contacts.find(
 			(contact) => contact.number.toString() === number && number
 		);
 
-		if (!email || !name || !number) {
+		if (!name || !number) {
 			return toast.warning("Please fill in all fields!");
 		}
 
-		if (checkEmail) {
-			return toast.error("This email already Exists!");
-		}
+		// if (checkEmail) {
+		// 	return toast.error("This email already Exists!");
+		// }
 
 		if (checkNumber) {
 			return toast.error("This number already Exists!");
@@ -39,7 +39,6 @@ const AddContact = () => {
 			id: contacts.length + 1,
 			name,
 			number,
-			email,
 		};
 		dispatch(ADD_CONTACT(data));
 		toast.success("Student Added Succesfully");
@@ -62,7 +61,7 @@ const AddContact = () => {
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</div>
-						<div class="mb-3">
+						{/* <div class="mb-3">
 							<input
 								type="email"
 								className="form-control"
@@ -70,7 +69,7 @@ const AddContact = () => {
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 							/>
-						</div>
+						</div> */}
 						<div className="mb-3">
 							<input
 								type="number"
