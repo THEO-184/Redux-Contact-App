@@ -50,7 +50,7 @@ const EditContact = () => {
 		history.push("/");
 	};
 	return (
-		<div className="container">
+		<div className="container" id="edit-container">
 			{currentContact ? (
 				<>
 					<h1 className="display-3 my-5 text-center">Edit Student {id}</h1>

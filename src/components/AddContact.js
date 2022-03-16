@@ -46,7 +46,7 @@ const AddContact = () => {
 	};
 
 	return (
-		<div className="container">
+		<div className="container" id="contact-container">
 			<h1 className="display-3 my-5 text-center">Add Student</h1>
 			<div className="row">
 				<div className="col-md-5 shadow p-5 mx-auto">
